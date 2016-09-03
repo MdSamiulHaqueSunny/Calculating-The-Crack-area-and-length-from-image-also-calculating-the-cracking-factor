@@ -1,0 +1,17 @@
+%step one: Loading the image
+I1 = imread('crack6.jpg');
+figure, imshow(I1);
+level=.30;
+B = im2bw(I1, level);
+figure, imshow(B);
+
+%step two: Detect the liner specimen
+j=200;
+for i=1:1:300
+c=B(i,j);
+if c==0
+y1=i;
+break
+end
+end
+

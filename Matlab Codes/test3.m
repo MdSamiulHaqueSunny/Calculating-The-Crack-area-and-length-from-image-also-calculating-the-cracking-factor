@@ -1,5 +1,5 @@
 %% load image
-I=imread('crack7.jpg');
+I=imread('crack6.jpg');
 figure,imshow(I)
 title('Original image')
 %% Image adjust 
@@ -15,25 +15,10 @@ title('RGB to gray (contrast stretched) ')
 %achieved
 
 
-level = 0.08;
+level = 0.3;
 Ithres = im2bw(Igray_s,level);
 figure,imshow(Ithres)
 title('Segmented cracks')
-%% Image morphological operation
-BW = bwmorph(Ithres,'clean',10);
-figure,imshow(BW)
-title('Cleaned image')
-BW = bwmorph(Ithres,'thin', inf);
-figure,imshow(BW)
-title('Thinned image')
-BW = imfill(Ithres, 'holes')
-figure,imshow(BW)
-title('Filled image')
-%% Image tool
-figure,imtool(BW)
-figure,imtool(I)
-%% Calaculate crack length
-calibration_length=0.001;   
-calibration_pixels=1000;
-crack_pixel=3;
-crack_length=(crack_pixel *calibration_length)/calibration_pixels;
+
+binaryImage = bwmorph(Ithres, 'skel', inf');
+measurements = regionprops(binaryImage, 'Area');

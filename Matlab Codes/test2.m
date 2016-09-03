@@ -22,7 +22,7 @@ end
 % Read in a standard MATLAB gray scale demo image.
 button = menu('Use which demo image?', 'MRI', 'Moon', 'Tire', 'Spine', 'Saturn');
 if button == 1
-	baseFileName = 'crack5.jpg';
+	baseFileName = 'crack6.jpg';
 elseif button == 2
 	baseFileName = 'crack2.jpg';
 elseif button == 3
