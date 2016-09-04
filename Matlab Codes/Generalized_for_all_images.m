@@ -1,54 +1,62 @@
-%step one: Loading the image
-%imtool('crack6.jpg')
-I1 = imread('crack1.jpg');
-%figure, imshow(I1);
+%Calculate Cracking Factor And Cracking Area from image
+%Author: MD.SAMIUL HAQUE SUNNY, EEE'12,KUET
+%Date:04-09-2016
+
+%Parameters
 level=.3;
+offset_row=-100;
+offset_column=-100;
+%step one: Loading the image
+file='F:\debu ce\imege 5\DSC01289.JPG';
+I1 = imread(file);
+figure, imshow(I1);
+
 B = im2bw(I1, level);
-%figure, imshow(B);
-imtool(B)
+[Image_row, Image_column]=size(B);
+figure, imshow(B);
+imtool(B);
 
 % %step two: Detect the liner specimen
-
-for row_x=1:1:182
-    c=B(row_x,:)
-    m=sum(c(1,:))
-    if m>273
+for row_x=1:1:Image_row
+    c=B(row_x,:);
+    m=sum(c(1,:));
+    if m>(Image_column+offset_column)
         continue
     else 
-        y1=row_x 
+        y1=row_x;
         break
     end  
 end
 
-for column_x=1:1:276
-    c=B(:,column_x)
-    m=sum(c(:,1))
-    if m>181
+for column_x=1:1:Image_column
+    c=B(:,column_x);
+    m=sum(c(:,1));
+    if m>(Image_row+offset_row)
         continue
     else 
-        x1=column_x
+        x1=column_x;
         break
     end  
 end
 
-for row_x=182:-1:1
-    c=B(row_x,:)
-    m=sum(c(1,:))
-    if m>273
+for row_x=Image_row:-1:1
+    c=B(row_x,:);
+    m=sum(c(1,:));
+    if m>(Image_column+offset_column)
         continue
     else 
-        y2=row_x 
+        y2=row_x;
         break
     end  
 end
 
-for column_x=276:-1:1
-    c=B(:,column_x)
-    m=sum(c(:,1))
-    if m>181
+for column_x=Image_column:-1:1
+    c=B(:,column_x);
+    m=sum(c(:,1));
+    if m>(Image_row+offset_row)
         continue
     else 
-        x2=column_x
+        x2=column_x;
         break
     end  
 end
@@ -87,8 +95,8 @@ a0=a0+1;
 end
 end
 end
-black_pixel=a1 %no of black
-white_pixel=a0 %no of white
+black_pixel=a1; %no of black
+white_pixel=a0; %no of white
 totalarea=240;
 crackarea=(totalarea/(a0+a1))*a1
 CIF=(crackarea/240)*100

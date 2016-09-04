@@ -1,43 +1,58 @@
 %step one: Loading the image
-I1 = imread('F:\debu ce\imege 5');
-figure, imshow(I1);
-level=.30;
+%imtool('crack6.jpg')
+I1 = imread('crack6.jpg');
+%figure, imshow(I1);
+level=.35;
 B = im2bw(I1, level);
-figure, imshow(B);
+%figure, imshow(B);
+imtool(B)
 
-%step two: Detect the liner specimen
-j=276;
-for i=1:1:150
-c=B(i,j);
-if c==0
-y1=i
-break
-end
-end
+% %step two: Detect the liner specimen
 
-for i=182:-1:0
-c=B(i,j);
-if c==0
-y2=i
-break
-end
+for row_x=1:1:183
+    c=B(row_x,:)
+    m=sum(c(1,:))
+    if m>270
+        continue
+    else 
+        y1=row_x 
+        break
+    end  
 end
 
-i=75;
-for j=1:1:276
-c=B(i,j);
-if c==0
-x1=j
-break
+for column_x=1:1:275
+    c=B(:,column_x)
+    m=sum(c(:,1))
+    if m>170
+        continue
+    else 
+        x1=column_x
+        break
+    end  
 end
+
+for row_x=183:-1:1
+    c=B(row_x,:)
+    m=sum(c(1,:))
+    if m>270
+        continue
+    else 
+        y2=row_x 
+        break
+    end  
 end
-for j=276:-1:0
-c=B(i,j);
-if c==0
-x2=j
-break
+
+for column_x=275:-1:1
+    c=B(:,column_x)
+    m=sum(c(:,1))
+    if m>180
+        continue
+    else 
+        x2=column_x
+        break
+    end  
 end
-end
+rect=[x1 y1 x2 y2]
 
 %%step three: Crop the liner surface from RGB image
 topLine = x1;

@@ -1,6 +1,6 @@
 %step one: Loading the image
 %imtool('crack6.jpg')
-I1 = imread('crack1.jpg');
+I1 = imread('F:\debu ce\imege 5\DSC01289.JPG');
 %figure, imshow(I1);
 level=.3;
 B = im2bw(I1, level);
@@ -9,46 +9,46 @@ imtool(B)
 
 % %step two: Detect the liner specimen
 
-for row_x=1:1:182
-    c=B(row_x,:)
-    m=sum(c(1,:))
-    if m>273
+for row_x=1:1:3240
+    c=B(row_x,:);
+    m=sum(c(1,:));
+    if m>4000
         continue
     else 
-        y1=row_x 
+        y1=row_x;
         break
     end  
 end
 
-for column_x=1:1:276
-    c=B(:,column_x)
-    m=sum(c(:,1))
-    if m>181
+for column_x=1:1:4320
+    c=B(:,column_x);
+    m=sum(c(:,1));
+    if m>3000
         continue
     else 
-        x1=column_x
+        x1=column_x;
         break
     end  
 end
 
-for row_x=182:-1:1
-    c=B(row_x,:)
-    m=sum(c(1,:))
-    if m>273
+for row_x=3240:-1:1
+    c=B(row_x,:);
+    m=sum(c(1,:));
+    if m>4000
         continue
     else 
-        y2=row_x 
+        y2=row_x;
         break
     end  
 end
 
-for column_x=276:-1:1
-    c=B(:,column_x)
-    m=sum(c(:,1))
-    if m>181
+for column_x=4320:-1:1
+    c=B(:,column_x);
+    m=sum(c(:,1));
+    if m>3000
         continue
     else 
-        x2=column_x
+        x2=column_x;
         break
     end  
 end
@@ -87,8 +87,8 @@ a0=a0+1;
 end
 end
 end
-black_pixel=a1 %no of black
-white_pixel=a0 %no of white
+black_pixel=a1; %no of black
+white_pixel=a0; %no of white
 totalarea=240;
 crackarea=(totalarea/(a0+a1))*a1
 CIF=(crackarea/240)*100

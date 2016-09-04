@@ -1,6 +1,6 @@
 %step one: Loading the image
 %imtool('crack6.jpg')
-I1 = imread('crack1.jpg');
+I1 = imread('F:\debu ce\imege 5\DSC01289.JPG');
 %figure, imshow(I1);
 level=.3;
 B = im2bw(I1, level);
